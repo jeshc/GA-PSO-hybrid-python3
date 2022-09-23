@@ -9,9 +9,9 @@ def start():
     GREEN = (0, 255, 0)
     RED = (255, 0, 0)
     BLUE = (0, 0, 255)
- 
+
     pygame.init()
- 
+
     #Set the width and height of the screen [width, height]
     size = (401, 401)
 
@@ -21,12 +21,12 @@ def start():
     margin = 1
 
     screen = pygame.display.set_mode(size)
- 
+
     pygame.display.set_caption("PSO-GA Algorithm")
- 
+
     #Loop until the user clicks the close button.
     done = False
- 
+
     #Used to manage how fast the screen updates
     clock = pygame.time.Clock()
 
@@ -51,10 +51,10 @@ def start():
 
     # This variable checks if the pso-ga algorithm finished
     algorithm_finished = False
-    print "Enter the obstacles by clicking the corresponding square. \
-When finished press SPACE."
-    print ""
- 
+    print("Enter the obstacles by clicking the corresponding square. \
+When finished press SPACE.")
+    print("")
+
     # -------- Main Program Loop -----------
     while not done:
         # --- Main event loop
@@ -81,15 +81,15 @@ When finished press SPACE."
                         not in OBSTACLES):
                             OBSTACLES.append(10 * j + i)
                 try :
-                    population = int(raw_input("Enter swarm population (recommended value: 100): "))
-                    generations = int(raw_input("Enter max \
+                    population = int(input("Enter swarm population (recommended value: 100): "))
+                    generations = int(input("Enter max \
 number of generations (recommended value: 150): "))
                 except ValueError:
-                    print "Invalid Input! The population is set to 100. \
-Max number of generations is set to 150."
+                    print("Invalid Input! The population is set to 100. \
+Max number of generations is set to 150.")
                     population = 100
                     generations = 150
-         
+
                 sol = algorithm(population, generations, OBSTACLES)
                 algorithm_finished = True
 
@@ -103,7 +103,7 @@ Max number of generations is set to 150."
                         y = ((y + 1) * (height)) - 20 + y * margin
                         segs.append([x, y])
 
- 
+
         screen.fill(BLACK)
         for row in range(10):
             for column in range(10):
@@ -124,13 +124,13 @@ Max number of generations is set to 150."
                     else:
                         segs = [[20, 20], [40, 40]]
                         pygame.draw.aalines(screen, RED, False, segs)
-                        
 
- 
+
+
         pygame.display.flip()
- 
+
         #Limit to 60 frames per second
         clock.tick(60)
- 
+
     # Close the window and quit.
     pygame.quit()
